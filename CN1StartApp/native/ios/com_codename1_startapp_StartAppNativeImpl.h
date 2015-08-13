@@ -1,6 +1,10 @@
 #import <Foundation/Foundation.h>
+/* Import StartApp SDK framework */
+#import "StartApp.h"
 
-@interface com_codename1_startapp_StartAppNativeImpl : NSObject {
+@interface com_codename1_startapp_StartAppNativeImpl : NSObject<STADelegateProtocol> {
+            
+    STAStartAppAd *startAppAd;
 }
 
 -(void)showAd;
