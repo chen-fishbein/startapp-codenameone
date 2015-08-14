@@ -32,7 +32,9 @@ public class StartAppManager {
      * @param enableReturnAd 
      */    
     public void initSDK(String accountId, String appId, boolean enableReturnAd) {
-        startapp.initSDK(accountId, appId, enableReturnAd);
+        if ("and".equals(Display.getInstance().getPlatformName())) {
+            startapp.initSDK(accountId, appId, enableReturnAd);
+        }
     }
     
     /**
@@ -43,6 +45,9 @@ public class StartAppManager {
      * @param enableReturnAd 
      */    
     public void initIOSSDK(String accountId, String appId, boolean enableReturnAd) {
+        if ("ios".equals(Display.getInstance().getPlatformName())) {
+            startapp.initSDK(accountId, appId, enableReturnAd);
+        }
     }
 
     
