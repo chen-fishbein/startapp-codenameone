@@ -1,5 +1,4 @@
 #startapp-codenameone
-cn1lib for startapp ads network
 
 Library extension of the StartApp Ads SDK (http://www.startapp.com/) for the Codename One platform.(http://www.codenameone.com)
 
