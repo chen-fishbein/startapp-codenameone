@@ -21,7 +21,10 @@ public class StartAppManager {
     private StartAppNative startapp;
     
     public StartAppManager() {
-        startapp = (StartAppNative) NativeLookup.create(StartAppNative.class);
+        try {
+            startapp = (StartAppNative) NativeLookup.create(StartAppNative.class);            
+        } catch (Exception e) {
+        }
     }
     
     
@@ -31,8 +34,8 @@ public class StartAppManager {
      * @param appId
      * @param enableReturnAd 
      */    
-    public void initSDK(String accountId, String appId, boolean enableReturnAd) {
-        if ("and".equals(Display.getInstance().getPlatformName())) {
+    public void initAndroidSDK(String accountId, String appId, boolean enableReturnAd) {
+        if (startapp != null && "and".equals(Display.getInstance().getPlatformName())) {
             startapp.initSDK(accountId, appId, enableReturnAd);
         }
     }
@@ -45,18 +48,25 @@ public class StartAppManager {
      * @param enableReturnAd 
      */    
     public void initIOSSDK(String accountId, String appId, boolean enableReturnAd) {
-        if ("ios".equals(Display.getInstance().getPlatformName())) {
+        if (startapp != null && "ios".equals(Display.getInstance().getPlatformName())) {
             startapp.initSDK(accountId, appId, enableReturnAd);
         }
     }
 
     
+    /**
+     * Show an Ad, call loadAd before.
+     */ 
     public void showAd(){    
         if(startapp != null){
             startapp.showAd();
         }
     }
     
+    /**
+     * Load an Ad, this might take a few seconds.
+     * @param type the Ad to load: AD_INTERSTITIALS or AD_REWARDED_VIDEO
+     */ 
     public void loadAd(int type){    
         if(startapp != null){
             startapp.loadAd(type);
@@ -64,6 +74,10 @@ public class StartAppManager {
     }
     
     
+    /**
+     * Sets an Ad listener to receive Ads callbacks
+     * @param l StartAppAdListener Object
+     */ 
     public void setAdsListener(StartAppAdListener l) {
         Callback.setListener(l);
     }
